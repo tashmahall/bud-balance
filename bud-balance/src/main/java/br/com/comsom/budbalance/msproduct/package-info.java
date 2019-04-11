@@ -5,4 +5,4 @@
  * @author igor.ferreira
  *
  */
-package br.com.comsom.budbalance.msperson.repository;
+package br.com.comsom.budbalance.msproduct;

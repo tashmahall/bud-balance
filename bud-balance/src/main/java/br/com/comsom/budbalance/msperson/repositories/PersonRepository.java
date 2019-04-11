@@ -1,4 +1,4 @@
-package br.com.comsom.budbalance.msperson.repository;
+package br.com.comsom.budbalance.msperson.repositories;
 
 import java.util.List;
 

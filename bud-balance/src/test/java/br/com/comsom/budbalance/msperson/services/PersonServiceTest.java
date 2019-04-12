@@ -1,4 +1,4 @@
-package br.com.comsom.budbalance.msperson.service;
+package br.com.comsom.budbalance.msperson.services;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;

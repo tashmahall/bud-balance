@@ -30,5 +30,7 @@ public class RepresentationService {
 		Representative rTemp =representativeService.findByCompanyIdNumber(companyIdNumber);
 		return repository.findByRepresentative(rTemp);
 	}
-
+	public Representation save(Representation entity) {
+		return repository.save(entity);
+	}
 }

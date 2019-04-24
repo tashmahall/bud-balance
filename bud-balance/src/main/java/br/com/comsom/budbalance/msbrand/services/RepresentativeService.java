@@ -18,4 +18,7 @@ public class RepresentativeService {
 	public List<Representative> findByName(String name){
 		return repository.findByName(name);
 	}
+	public Representative save(Representative entity) {
+		return repository.save(entity);
+	}
 }

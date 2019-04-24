@@ -16,4 +16,7 @@ public class BrandService {
 	public Brand findByCode(String code) {
 		return repository.findByCode(code);
 	}
+	public Brand save(Brand entity) {
+		return repository.save(entity);
+	}
 }

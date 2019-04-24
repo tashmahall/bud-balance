@@ -30,7 +30,7 @@ import br.com.comsom.budbalance.msperson.services.PersonService;
 public class PersonController {
 	@Autowired
 	private PersonService service;
-	@PostMapping(consumes= {MediaType.APPLICATION_JSON_VALUE},produces= {MediaType.APPLICATION_JSON_VALUE})
+	@PostMapping(path="/people", consumes= {MediaType.APPLICATION_JSON_VALUE},produces= {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<JsonNode> addPerson(@RequestBody JsonNode request){
 		ObjectNode  response;
 		try {
@@ -46,14 +46,14 @@ public class PersonController {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
 		}
 	}
-	@GetMapping(path="{socialId}", consumes= {MediaType.TEXT_PLAIN_VALUE},produces=MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(path="/people/{socialId}", consumes= {MediaType.TEXT_PLAIN_VALUE},produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<JsonNode> getPersonBySocialId (@PathVariable(name="socialId") String socialId){
 		Person entity = service.findBySocialId(socialId);
 		ObjectNode response = JackJsonUtils.entityToObjectNode(entity);
 		return ResponseEntity.status(HttpStatus.OK).body(response);
 	}
 	
-	@GetMapping(consumes= {MediaType.TEXT_PLAIN_VALUE}, produces=MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(path="/people",consumes= {MediaType.TEXT_PLAIN_VALUE}, produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<JsonNode> getPeopleByName(@RequestParam(name="name") String name){
 		List<Person> lPerson = service.findByName(name);
 		ArrayNode response = JackJsonUtils.listEntityToArrayNode(lPerson);

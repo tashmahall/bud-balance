@@ -16,7 +16,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 @Entity
-@Table(name="HEARING_MODEL_REPRESENTATIN")
+@Table(name="HEARING_MODEL_REPRESENTATIONS")
 @Getter
 @Setter
 @NoArgsConstructor

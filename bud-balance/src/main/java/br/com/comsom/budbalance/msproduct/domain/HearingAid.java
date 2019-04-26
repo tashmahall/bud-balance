@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name="HEARING_AID")
+@Table(name="HEARING_AIDS")
 @Getter
 @Setter
 @NoArgsConstructor

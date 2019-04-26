@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -21,16 +22,17 @@ import br.com.comsom.budbalance.msperson.JackJsonUtils;
 
 @RestController
 @Path(value="/representatives")
+@RequestMapping(value="/representatives")
 public class RepresentativeController {
 	@Autowired
 	private RepresentativeService service;
-	@PostMapping(path="/representatives",consumes={MediaType.APPLICATION_JSON},produces={MediaType.APPLICATION_JSON})
+	@PostMapping(consumes={MediaType.APPLICATION_JSON},produces={MediaType.APPLICATION_JSON})
 	public ResponseEntity<JsonNode> addRepresentative(@RequestBody JsonNode request) {
 		ObjectNode response = JackJsonUtils.entityToObjectNode(service.save(createRepresentative(request)));
 		return ResponseEntity.status(HttpStatus.OK).body(response);
 	}
-	@GetMapping(path="/representatives/{codeRepresentative}", consumes= {MediaType.TEXT_PLAIN},produces=MediaType.APPLICATION_JSON)
-	public ResponseEntity<JsonNode> getRepresentationByCode(@PathVariable(name="codeRepresentative") String companyIdNumber){
+	@GetMapping(path="/{codeRepresentative}", consumes= {MediaType.TEXT_PLAIN},produces=MediaType.APPLICATION_JSON)
+	public ResponseEntity<JsonNode> getRepresentativeByCode(@PathVariable(name="codeRepresentative") String companyIdNumber){
 		Representative entity = service.findByCompanyIdNumber(companyIdNumber);
 		ObjectNode response = JackJsonUtils.entityToObjectNode(entity);
 		return ResponseEntity.status(HttpStatus.OK).body(response);

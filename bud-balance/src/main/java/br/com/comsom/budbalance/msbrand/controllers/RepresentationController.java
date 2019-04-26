@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -27,6 +28,7 @@ import br.com.comsom.budbalance.msperson.JackJsonUtils;
 
 @RestController
 @Path(value="/representations")
+@RequestMapping("/representations")
 public class RepresentationController {
 	@Autowired
 	private RepresentationService service;
@@ -34,12 +36,12 @@ public class RepresentationController {
 	private BrandService brandService;
 	@Autowired
 	private RepresentativeService representativeService;
-	@PostMapping(path="/representations",consumes={MediaType.APPLICATION_JSON},produces={MediaType.APPLICATION_JSON})
+	@PostMapping(consumes={MediaType.APPLICATION_JSON},produces={MediaType.APPLICATION_JSON})
 	public ResponseEntity<JsonNode> addRepresentation(@RequestBody JsonNode request) {
 		ObjectNode response = createJsonRepresentation(service.save(createRepresentation(request)));
 		return ResponseEntity.status(HttpStatus.OK).body(response);
 	}
-	@GetMapping(path="/representations/{codeRepresentation}", consumes= {MediaType.TEXT_PLAIN},produces=MediaType.APPLICATION_JSON)
+	@GetMapping(path="/{codeRepresentation}", consumes= {MediaType.TEXT_PLAIN},produces=MediaType.APPLICATION_JSON)
 	public ResponseEntity<JsonNode> getRepresentationByCode(@PathVariable(name="codeRepresentation") String socialId){
 		Representation entity = service.findByCode(socialId);
 		ObjectNode response = createJsonRepresentation(entity);

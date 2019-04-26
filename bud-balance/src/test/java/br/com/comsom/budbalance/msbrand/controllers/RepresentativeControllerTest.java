@@ -48,7 +48,7 @@ public class RepresentativeControllerTest {
 	@Test
 	public void getBrandByCode() {
 		when(service.findByCompanyIdNumber(entity.getCompanyIdNumber())).thenReturn(entity);
-		ResponseEntity<JsonNode> response = controller.getRepresentationByCode(entity.getCompanyIdNumber());
+		ResponseEntity<JsonNode> response = controller.getRepresentativeByCode(entity.getCompanyIdNumber());
 		ResponseEntity<JsonNode> responseTest = ResponseEntity.status(HttpStatus.OK).body(request);
 		assertEquals(responseTest,response);
 	}
